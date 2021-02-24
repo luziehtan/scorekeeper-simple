@@ -10,7 +10,6 @@ import PlayerForm from './PlayerForm'
 
 export default function App() {
   const [players, setPlayers] = useState([])
-
   return (
     <AppLayout>
       <PlayerForm onAddPlayer={handleAddPlayer} />
@@ -22,6 +21,7 @@ export default function App() {
           onPlus={() => handlePlus(index)}
           onMinus={() => handleMinus(index)}
         />
+        // React.createElement(Player, {name, score, onPlus: () => handlePlus(index)})
       ))}
       <ButtonGrid>
         <Button onClick={resetScores}>Reset scores</Button>
