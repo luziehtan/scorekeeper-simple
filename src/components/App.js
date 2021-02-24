@@ -24,8 +24,10 @@ export default function App() {
         // React.createElement(Player, {name, score, onPlus: () => handlePlus(index)})
       ))}
       <ButtonGrid>
-        <Button onClick={resetScores}>Reset scores</Button>
-        <DangerButton onClick={resetAll}>Reset all</DangerButton>
+        <ResetScoresButton onClick={resetScores}>
+          Reset scores
+        </ResetScoresButton>
+        <ResetAllButton onClick={resetAll}>Reset all</ResetAllButton>
       </ButtonGrid>
 
       <GameForm onCreateGame={data => console.log('onCreateGame', data)} />
@@ -33,7 +35,7 @@ export default function App() {
         activeIndex={0}
         onNavigate={index => console.log('onNavigate', index)}
       />
-      <Header text="Carcassonne" />
+      <Header>Carcassonne</Header>
       <HistoryEntry
         nameOfGame="Carcassonne"
         players={[
@@ -80,12 +82,18 @@ const AppLayout = styled.div`
   gap: 20px;
   padding: 20px;
 `
-const DangerButton = styled(Button)`
-  background-color: mistyrose;
-  border: 1px solid red;
-`
 const ButtonGrid = styled.div`
   display: grid;
   gap: 5px;
   grid-template-columns: 1fr 1fr;
+`
+
+const ResetScoresButton = styled(Button)`
+  border: 2px solid #c21807;
+  color: #c21807;
+`
+
+const ResetAllButton = styled(Button)`
+  background: #c21807;
+  border: 2px solid transparent;
 `

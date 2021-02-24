@@ -3,13 +3,13 @@ import styled from 'styled-components/macro'
 
 export default function PlayerForm({ onAddPlayer }) {
   return (
-    <form className="PlayerForm" onSubmit={handleSubmit}>
-      <Label>
+    <Form onSubmit={handleSubmit}>
+      <label>
         Add player:
         <br />
-        <Input name="player" placeholder="Player name" />
-      </Label>
-    </form>
+        <FormInput name="player" placeholder="Player name" />
+      </label>
+    </Form>
   )
 
   function handleSubmit(event) {
@@ -23,11 +23,15 @@ export default function PlayerForm({ onAddPlayer }) {
   }
 }
 
-const Label = styled.label`
-  display: grid;
-  gap: 4px;
+const Form = styled.form`
+  background: #eee;
+  padding: 15px;
+  border-radius: 8px;
 `
 
-const Input = styled.input`
-  border: 1px solid #666;
+const FormInput = styled.input`
+  border: 0;
+  border-bottom: 1px solid #bbb;
+  margin-top: 8px;
+  width: 100%;
 `

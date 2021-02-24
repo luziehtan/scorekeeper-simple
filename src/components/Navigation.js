@@ -1,16 +1,31 @@
 import React from 'react'
 import Button from './Button'
-import './Navigation.css'
+import styled from 'styled-components/macro'
 
 export default function Navigation({ onNavigate, activeIndex }) {
   return (
-    <nav className="Navigation">
-      <Button isActive={activeIndex === 0} onClick={() => onNavigate(0)}>
+    <Nav>
+      <PlayButton isActive={activeIndex === 0} onClick={() => onNavigate(0)}>
         Play
-      </Button>
-      <Button isActive={activeIndex === 1} onClick={() => onNavigate(1)}>
+      </PlayButton>
+      <HistoryButton isActive={activeIndex === 1} onClick={() => onNavigate(1)}>
         History
-      </Button>
-    </nav>
+      </HistoryButton>
+    </Nav>
   )
 }
+
+const Nav = styled.nav`
+  display: flex;
+  gap: 5px;
+`
+const PlayButton = styled(Button)`
+  border: 2px solid green;
+  color: green;
+  width: 100%;
+`
+
+const HistoryButton = styled(Button)`
+  border: 2px solid transparent;
+  width: 100%;
+`
