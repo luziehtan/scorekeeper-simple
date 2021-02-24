@@ -2,13 +2,19 @@ import React from 'react'
 import Button from './Button'
 import styled from 'styled-components/macro'
 
-export default function Navigation({ onNavigate, activeIndex }) {
+export default function Navigation({ onNavigate, currentPage }) {
   return (
     <Nav>
-      <PlayButton isActive={activeIndex === 0} onClick={() => onNavigate(0)}>
+      <PlayButton
+        isActive={currentPage === 'play'}
+        onClick={() => onNavigate('play')}
+      >
         Play
       </PlayButton>
-      <HistoryButton isActive={activeIndex === 1} onClick={() => onNavigate(1)}>
+      <HistoryButton
+        isActive={currentPage === 'history'}
+        onClick={() => onNavigate('history')}
+      >
         History
       </HistoryButton>
     </Nav>
@@ -20,8 +26,8 @@ const Nav = styled.nav`
   gap: 5px;
 `
 const PlayButton = styled(Button)`
-  border: 2px solid green;
-  color: green;
+  border: 2px solid black;
+  color: black;
   width: 100%;
 `
 

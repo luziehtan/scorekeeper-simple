@@ -6,49 +6,63 @@ import Header from './Header'
 import HistoryEntry from './HistoryEntry'
 import Navigation from './Navigation'
 import Player from './Player'
-import PlayerForm from './PlayerForm'
+// import PlayerForm from './PlayerForm'
 
 export default function App() {
   const [players, setPlayers] = useState([])
+
+  const [currentPage, setCurrentPage] = useState('play')
+
   return (
     <AppLayout>
-      <PlayerForm onAddPlayer={handleAddPlayer} />
-      {players.map(({ name, score }, index) => (
-        <Player
-          key={name}
-          name={name}
-          score={score}
-          onPlus={() => handlePlus(index)}
-          onMinus={() => handleMinus(index)}
-        />
-        // React.createElement(Player, {name, score, onPlus: () => handlePlus(index)})
-      ))}
-      <ButtonGrid>
-        <ResetScoresButton onClick={resetScores}>
-          Reset scores
-        </ResetScoresButton>
-        <ResetAllButton onClick={resetAll}>Reset all</ResetAllButton>
-      </ButtonGrid>
+      {/* conditional rendering */}
+      {currentPage === 'play' && (
+        <div>
+          <GameForm onCreateGame={data => console.log('onCreateGame', data)} />
+        </div>
+      )}
 
-      <GameForm onCreateGame={data => console.log('onCreateGame', data)} />
-      <Navigation
-        activeIndex={0}
-        onNavigate={index => console.log('onNavigate', index)}
-      />
-      <Header>Carcassonne</Header>
-      <HistoryEntry
-        nameOfGame="Carcassonne"
-        players={[
-          { name: 'John Doe', score: 10 },
-          { name: 'Jane Doe', score: 20 },
-        ]}
-      />
+      {currentPage === 'game' && (
+        <div>
+          <Header>Carcassonne</Header>
+          {players.map(({ name, score }, index) => (
+            <Player
+              key={name}
+              name={name}
+              score={score}
+              onPlus={() => handlePlus(index)}
+              onMinus={() => handleMinus(index)}
+            />
+          ))}
+          <ResetScoresButton onClick={resetScores}>
+            Reset scores
+          </ResetScoresButton>
+          <ResetAllButton onClick={resetAll}>Reset scores</ResetAllButton>
+          <Button onClick={() => console.log('end game')}>End game</Button>
+        </div>
+      )}
+
+      {currentPage === 'history' && (
+        <div>
+          <HistoryEntry
+            nameOfGame="Carcassonne"
+            players={[
+              { name: 'John Doe', score: 10 },
+              { name: 'Jane Doe', score: 20 },
+            ]}
+          />
+        </div>
+      )}
+
+      {(currentPage === 'play' || currentPage === 'history') && (
+        <Navigation currentPage={currentPage} onNavigate={setCurrentPage} />
+      )}
     </AppLayout>
   )
 
-  function handleAddPlayer(name) {
+  /* function handleAddPlayer(name) {
     setPlayers(oldPlayers => [...oldPlayers, { name, score: 0 }])
-  }
+  } */
 
   function resetAll() {
     setPlayers([])
@@ -82,11 +96,11 @@ const AppLayout = styled.div`
   gap: 20px;
   padding: 20px;
 `
-const ButtonGrid = styled.div`
+/* const ButtonGrid = styled.div`
   display: grid;
   gap: 5px;
   grid-template-columns: 1fr 1fr;
-`
+` */
 
 const ResetScoresButton = styled(Button)`
   border: 2px solid #c21807;
