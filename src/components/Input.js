@@ -15,5 +15,8 @@ const Label = styled.label`
   gap: 4px;
 `
 const LabelInput = styled.input`
-  border: 2px solid #bbb;
+  border: 0;
+  border-bottom: 1px solid #bbb;
+  margin-top: 8px;
+  width: 100%;
 `

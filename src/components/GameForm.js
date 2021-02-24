@@ -37,6 +37,9 @@ export default function GameForm({ onCreateGame }) {
 const Form = styled.form`
   display: grid;
   gap: 10px;
+  background: #eee;
+  padding: 15px;
+  border-radius: 8px;
 `
 
 const NewGameButton = styled(Button)`

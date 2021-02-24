@@ -3,7 +3,7 @@ import styled from 'styled-components/macro'
 export default styled.header`
   text-align: center;
   padding: 10px;
-  border: 1px solid black;
+  margin: 5px;
   border-radius: 8px;
-  background: #eee;
+  background: #ccc;
 `

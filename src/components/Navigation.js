@@ -26,12 +26,9 @@ const Nav = styled.nav`
   gap: 5px;
 `
 const PlayButton = styled(Button)`
-  border: 2px solid black;
-  color: black;
   width: 100%;
 `
 
 const HistoryButton = styled(Button)`
-  border: 2px solid transparent;
   width: 100%;
 `
